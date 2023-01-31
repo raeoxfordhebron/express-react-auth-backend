@@ -2,6 +2,7 @@ import express from "express"
 import morgan from "morgan"
 import cors from "cors"
 import dotenv from "dotenv"
+import cookieParser from "cookie-parser"
 
 // read .env file
 dotenv.config()
@@ -13,6 +14,7 @@ const app = express()
 app.use(cors()) // allow external requests
 app.use(morgan("dev")) // logging
 app.use(express.json()) // parse json bodies
+app.use(cookieParser()) // parse cookies
 
 // Routes and Routers
 
