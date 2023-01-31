@@ -51,5 +51,5 @@ router.post("/login", async (req, res) => {
 
 // Logout post
 router.post("/logout", async (req, res) => {
-
+    res.clearCookie("token").json({response: "You are logged out"})
 })
