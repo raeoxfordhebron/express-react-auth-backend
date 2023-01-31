@@ -1,5 +1,5 @@
 import express from "express"
-import User from "../models/user"
+import User from "../models/user.js"
 import bcrypt from "bcryptjs"
 import jwt from "jsonwebtoken"
 import dotenv from "dotenv"
@@ -53,3 +53,5 @@ router.post("/login", async (req, res) => {
 router.post("/logout", async (req, res) => {
     res.clearCookie("token").json({response: "You are logged out"})
 })
+
+export default router

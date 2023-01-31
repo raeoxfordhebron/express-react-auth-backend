@@ -3,6 +3,7 @@ import morgan from "morgan"
 import cors from "cors"
 import dotenv from "dotenv"
 import cookieParser from "cookie-parser"
+import authRouter from "./controllers/auth.js"
 
 // read .env file
 dotenv.config()
@@ -17,7 +18,7 @@ app.use(express.json()) // parse json bodies
 app.use(cookieParser()) // parse cookies
 
 // Routes and Routers
-
+app.use("/auth", authRouter)
 // test route
 app.get("/test", (req, res) => {
     res.send("server is working")
