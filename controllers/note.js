@@ -9,7 +9,7 @@ router.use(isLoggedIn)
 router.get("/", async (req, res)=> {
     try{ 
         const username = req.payload.username
-        const notes = await Note.find(username)
+        const notes = await Note.find({username})
         res.json(notes)
     } catch(error) {
         res.status(400).json(error)
@@ -17,9 +17,11 @@ router.get("/", async (req, res)=> {
 })
 
 // Show Route
-router.get("/id", async (req,res) => {
+router.get("/:id", async (req, res) => {
     try{
-
+        const username = req.payload.username
+        const notes = await Note.findOne({username, _id: req.params.id})
+        res.json(notes)
     } catch(error) {
         res.status(400).json(error)
     }
