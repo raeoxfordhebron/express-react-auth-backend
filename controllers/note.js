@@ -20,8 +20,8 @@ router.get("/", async (req, res)=> {
 router.get("/:id", async (req, res) => {
     try{
         const username = req.payload.username
-        const notes = await Note.findOne({username, _id: req.params.id})
-        res.json(notes)
+        const note = await Note.findOne({username, _id: req.params.id})
+        res.json(note)
     } catch(error) {
         res.status(400).json(error)
     }
@@ -30,7 +30,10 @@ router.get("/:id", async (req, res) => {
 // Create Route
 router.post("/", async (req, res) => {
     try{
-
+        const username = req.payload.username
+        req.body.username = username
+        const note = await Note.create(req.body)
+        res.json(note)
     } catch(error) {
         res.status(400).json(error)
     }
