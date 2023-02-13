@@ -52,7 +52,7 @@ router.put("/:id", async (req, res) => {
 })
 
 // Delete Route
-router.put("/:id", async (req, res) => {
+router.delete("/:id", async (req, res) => {
     try{
         const username = req.payload.username
         req.body.username = username

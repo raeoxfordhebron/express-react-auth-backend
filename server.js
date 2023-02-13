@@ -4,6 +4,7 @@ import cors from "cors"
 import dotenv from "dotenv"
 import cookieParser from "cookie-parser"
 import authRouter from "./controllers/auth.js"
+import noteRouter from "./controllers/note.js"
 
 // read .env file
 dotenv.config()
@@ -19,6 +20,8 @@ app.use(cookieParser()) // parse cookies
 
 // Routes and Routers
 app.use("/auth", authRouter)
+app.use("/note", noteRouter)
+
 // test route
 app.get("/test", (req, res) => {
     res.send("server is working")
