@@ -30,13 +30,13 @@ router.post("/login", async (req, res) => {
     try {
     const {username, password} = req.body
     // get the user
-    const user = await User.find({username})
+    const user = await User.findOne({username})
 
     if (user) {
         const passwordCheck = await bcrypt.compare(password, user.password)
         if (password) {
             const payload = {username}
-            const token = jwt.sign(payload, process.env.SECRET)
+            const token = await jwt.sign(payload, process.env.SECRET)
             res.cookie("token", token, {httpOnly: true}).json({payload, status: "logged in"})
         } else {
             res.status(400).json({error:"Password does not match"})
