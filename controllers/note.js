@@ -51,6 +51,18 @@ router.put("/:id", async (req, res) => {
     }
 })
 
+// Delete Route
+router.put("/:id", async (req, res) => {
+    try{
+        const username = req.payload.username
+        req.body.username = username
+        const note = await Note.deleteOne({_id: req.params.id, username})
+        res.json(note);
+    } catch (error) {
+        res.status(400).json(error)
+    }
+})
+
 
 
 export default router
