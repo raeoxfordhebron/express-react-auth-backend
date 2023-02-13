@@ -39,6 +39,18 @@ router.post("/", async (req, res) => {
     }
 })
 
+// Update Route
+router.put("/:id", async (req, res) => {
+    try{
+        const username = req.payload.username
+        req.body.username = username
+        const note = await Note.findByIdAndUpdate(req.params.id, req.body, {new: true})
+        res.json(note);
+    } catch (error) {
+        res.status(400).json(error)
+    }
+})
+
 
 
 export default router
