@@ -13,7 +13,10 @@ dotenv.config()
 const app = express()
 
 // register middleware
-app.use(cors()) // allow external requests
+app.use(cors({
+    origin: "http://localhost:3000",
+    credentials: true
+})) // allow external requests
 app.use(morgan("dev")) // logging
 app.use(express.json()) // parse json bodies
 app.use(cookieParser()) // parse cookies
